@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form with Questions</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 100px;
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        width: 700px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 100px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 14px;
+      }
+
+      .question-input {
+        width: calc(100% - 22px);
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <form action="index.php" method="post">
+      <label for="id">Cni:</label>
+      <input type="text" id="cni" name="cni" /><br />
+
+      <label for="nom">Nom:</label>
+      <input type="text" id="nom" name="nom" /><br />
+
+      <label for="prenom">Prénom:</label>
+      <input type="text" id="prenom" name="prenom" /><br />
+
+      <label for="rendement">Rendement:</label>
+      <input type="text" id="rendement" name="rendement" /><br />
+
+      <label for="objectif">Objectif:</label>
+      <input type="text" id="objectif" name="objectif" /><br />
+
+      <div id="question-container">
+
+
+      </div>
+
+      <button type="button">Add New Question</button><br /><br />
+      <input type="hidden" id="questionCount" name="questionCount" value="" />
+
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      $(document).ready(function () {
+        var questionCount = 1;
+
+        // Add new question input field
+        $("button[type='button']").on("click", function () {
+          var questionInput = $("<input>").attr({
+            type: "text",
+            name: "question" + questionCount, // question1
+            class: "question-input",
+            placeholder: "Enter your question...",
+          });
+          var questionLabel = $("<label>")
+            .attr("for", "question" + questionCount)
+            .text("Question:");
+          $("#question-container").append(
+            questionLabel,
+            questionInput,
+            $("<br>")
+          );
+          questionCount++;
+          $("#questionCount").val(questionCount);
+        });
+      });
+    </script>
+  </body>
+</html>
