@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "edge";
+$database = "edge1";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -12,7 +12,6 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
@@ -57,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-header("Location: dashboard.html");
+header("Location: dashboard.php");
 
 exit();
 ?>
